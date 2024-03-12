@@ -12,13 +12,11 @@ export async function render(url: string, manifest: any) {
   const { app, router, store } = createApp()
   router.push(url)
   await router.isReady()
-  console.log('server render1111>>>')
   const ctx: any = {}
   const appHtml = await renderToString(app, ctx)
   const preloadLinks = renderPreloadLinks(ctx?.modules, manifest)
   const teleports = renderTeleports(ctx?.teleports)
   const state = JSON.stringify(store.state.value)
-  console.log('server render2222>>>')
   return { appHtml, preloadLinks, teleports, state }
 }
 

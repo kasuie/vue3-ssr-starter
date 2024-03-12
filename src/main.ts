@@ -16,7 +16,5 @@ export function createApp() {
   const store = createPinia()
   const router = createRouter()
   app.use(router).use(store)
-  console.log('main>>>', new Date().getMilliseconds())
-
   return { app, router, store }
 }

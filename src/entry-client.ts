@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-03-11 17:26:17
  * @LastEditors: kasuie
- * @LastEditTime: 2024-03-12 09:24:32
+ * @LastEditTime: 2024-03-12 10:06:13
  * @Description:
  */
 import { createApp } from './main'
@@ -20,6 +20,5 @@ router.beforeResolve((to, from, next) => {
 })
 
 router.isReady().then(() => {
-  console.log('client render>>>', new Date().getMilliseconds())
   app.mount('#app')
 })
