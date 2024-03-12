@@ -2,19 +2,21 @@
  * @Author: kasuie
  * @Date: 2024-03-11 17:12:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-03-11 18:02:28
+ * @LastEditTime: 2024-03-12 09:22:43
  * @Description:
  */
 import './assets/main.css'
 import App from './App.vue'
 import { createSSRApp } from 'vue'
 import { createRouter } from './router'
+import { createPinia } from 'pinia'
 
 export function createApp() {
   const app = createSSRApp(App)
+  const store = createPinia()
   const router = createRouter()
-  app.use(router)
+  app.use(router).use(store)
   console.log('main>>>', new Date().getMilliseconds())
 
-  return { app, router }
+  return { app, router, store }
 }

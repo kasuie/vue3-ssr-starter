@@ -2,26 +2,24 @@
  * @Author: kasuie
  * @Date: 2024-03-11 17:18:25
  * @LastEditors: kasuie
- * @LastEditTime: 2024-03-11 23:42:41
+ * @LastEditTime: 2024-03-12 09:21:40
  * @Description:
  */
 import { createApp } from './main'
 import { renderToString } from 'vue/server-renderer'
 
 export async function render(url: string, manifest: any) {
-  const { app, router } = createApp()
-  console.log('server render>>>')
-
+  const { app, router, store } = createApp()
   router.push(url)
   await router.isReady()
   console.log('server render1111>>>')
-
   const ctx: any = {}
   const appHtml = await renderToString(app, ctx)
   const preloadLinks = renderPreloadLinks(ctx?.modules, manifest)
   const teleports = renderTeleports(ctx?.teleports)
+  const state = JSON.stringify(store.state.value)
   console.log('server render2222>>>')
-  return { appHtml, preloadLinks, teleports }
+  return { appHtml, preloadLinks, teleports, state }
 }
 
 function renderTeleports(teleports: any) {

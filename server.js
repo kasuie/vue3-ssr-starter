@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-03-11 17:31:50
  * @LastEditors: kasuie
- * @LastEditTime: 2024-03-11 23:40:17
+ * @LastEditTime: 2024-03-12 09:50:47
  * @Description:
  */
 import fs from 'fs'
@@ -16,7 +16,7 @@ export async function createServer() {
   const app = express()
 
   let vite
-
+  console.log("server js000>>>>");
   if (isProd) {
     app.use((await import('compression')).default())
     app.use(
@@ -24,6 +24,7 @@ export async function createServer() {
         index: false
       })
     )
+    console.log("server js0>>>>");
   } else {
     vite = await (
       await import('vite')
@@ -62,21 +63,17 @@ export async function createServer() {
         )
         render = (await vite.ssrLoadModule('/src/entry-server.ts')).render
       }
+      console.log("server js11>>>>");
 
-      const { appHtml, preloadLinks, teleports } = await render(url, manifest)
-      // const renderRes = await render(url)
-
-      console.log(appHtml)
+      const { appHtml, preloadLinks, teleports, state } = await render(url, manifest)
 
       const html = template
         .replace(`<!--preload-links-->`, preloadLinks)
         .replace(`<!--app-html-->`, appHtml)
-        // .replace(`<!--pinia-state-->`, piniaState)
+        .replace(`<!--app-store-->`, state)
         .replace(/(\n|\r\n)\s*<!--app-teleports-->/, teleports)
 
-      // console.log('server js>>>2', renderRes)
-
-      // const html = template.replace(`<!--app-html-->`, renderRes.html)
+      console.log('server js>>>2')
 
       console.log('server js>>>3', new Date().getMilliseconds())
 
