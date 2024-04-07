@@ -1,3 +1,10 @@
+<!--
+ * @Author: kasuie
+ * @Date: 2024-03-11 17:12:33
+ * @LastEditors: kasuie
+ * @LastEditTime: 2024-04-07 10:40:23
+ * @Description: 
+-->
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
@@ -11,6 +18,7 @@ import HelloWorld from './components/HelloWorld.vue'
       <HelloWorld msg="You did it!" />
 
       <nav>
+        <a href="/about">About</a>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
