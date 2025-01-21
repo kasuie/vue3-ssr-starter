@@ -2,7 +2,7 @@
  * @Author: kasuie
  * @Date: 2024-03-11 17:12:33
  * @LastEditors: kasuie
- * @LastEditTime: 2024-04-07 10:40:23
+ * @LastEditTime: 2025-01-21 14:40:23
  * @Description: 
 -->
 <script setup lang="ts">
@@ -24,10 +24,8 @@ import HelloWorld from './components/HelloWorld.vue'
       </nav>
     </div>
   </header>
-
   <RouterView />
 </template>
-
 <style scoped>
 header {
   line-height: 1.5;
